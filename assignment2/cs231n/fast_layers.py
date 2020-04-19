@@ -155,7 +155,6 @@ conv_backward_fast = conv_backward_strides
 def max_pool_forward_fast(x, pool_param):
     """
     A fast implementation of the forward pass for a max pooling layer.
-
     This chooses between the reshape method and the im2col method. If the pooling
     regions are square and tile the input image, then we can use the reshape
     method which is very fast. Otherwise we fall back on the im2col method, which
@@ -179,7 +178,6 @@ def max_pool_forward_fast(x, pool_param):
 def max_pool_backward_fast(dout, cache):
     """
     A fast implementation of the backward pass for a max pooling layer.
-
     This switches between the reshape method an the im2col method depending on
     which method was used to generate the cache.
     """
@@ -196,7 +194,6 @@ def max_pool_forward_reshape(x, pool_param):
     """
     A fast implementation of the forward pass for the max pooling layer that uses
     some clever reshaping.
-
     This can only be used for square pooling regions that tile the input.
     """
     N, C, H, W = x.shape
@@ -217,10 +214,8 @@ def max_pool_backward_reshape(dout, cache):
     """
     A fast implementation of the backward pass for the max pooling layer that
     uses some clever broadcasting and reshaping.
-
     This can only be used if the forward pass was computed using
     max_pool_forward_reshape.
-
     NOTE: If there are multiple argmaxes, this method will assign gradient to
     ALL argmax elements of the input rather than picking one. In this case the
     gradient will actually be incorrect. However this is unlikely to occur in
@@ -247,7 +242,6 @@ def max_pool_backward_reshape(dout, cache):
 def max_pool_forward_im2col(x, pool_param):
     """
     An implementation of the forward pass for max pooling based on im2col.
-
     This isn't much faster than the naive version, so it should be avoided if
     possible.
     """
@@ -274,7 +268,6 @@ def max_pool_forward_im2col(x, pool_param):
 def max_pool_backward_im2col(dout, cache):
     """
     An implementation of the backward pass for max pooling based on im2col.
-
     This isn't much faster than the naive version, so it should be avoided if
     possible.
     """
